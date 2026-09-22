@@ -1,0 +1,59 @@
+name: Build HTML5
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-html5:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: '4.1.5'
+
+      - name: Install Neko
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y neko
+
+      - name: Setup Haxelib
+        run: |
+          haxelib setup ~/haxelib
+
+      - name: Install dependencies
+        run: |
+          haxelib install lime 7.9.0
+          haxelib install openfl
+          haxelib install flixel
+          haxelib run lime setup flixel
+          haxelib install flixel-tools
+          haxelib install flixel-addons
+          haxelib install flixel-ui
+          haxelib install hscript
+          haxelib install newgrounds
+          haxelib git polymod https://github.com/larsiusprime/polymod.git
+
+      - name: Build HTML5
+        run: |
+          haxelib run lime build html5 -release
+
+      - name: Package HTML5 build
+        run: |
+          mkdir -p html5-build
+          cp -r export/release/html5/bin/* html5-build/ || cp -r export/debug/html5/bin/* html5-build/
+          cd html5-build
+          zip -r ../Friday-Niite-Freestyle-HTML5.zip .
+
+      - name: Upload HTML5 build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Friday-Niite-Freestyle-HTML5
+          path: Friday-Niite-Freestyle-HTML5.zip
+          if-no-files-found: error
