@@ -1,0 +1,39 @@
+name: HTML5 Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@v2
+        with:
+          haxe-version: 4.2.5
+
+      - name: Install libraries
+        run: |
+          haxelib setup ~/haxelib
+          haxelib install lime 8.1.1 --quiet
+          haxelib install openfl --quiet
+          haxelib install flixel --quiet
+          haxelib install flixel-addons --quiet
+          haxelib install flixel-ui --quiet
+          haxelib install hscript --quiet
+          haxelib install polymod --quiet
+          haxelib install newgrounds --quiet
+          haxelib run lime setup -y
+
+      - name: Build HTML5
+        run: haxelib run lime build html5 -release
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: html5-build
+          path: export/release/html5/bin
