@@ -668,6 +668,7 @@ case 'gf':
 	{
 		if (!debugMode)
 		{
+			var currentAnim = animation.curAnim;
 			switch (curCharacter)
 			{
 				case 'gf':
