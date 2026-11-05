@@ -672,7 +672,7 @@ case 'gf':
 			switch (curCharacter)
 			{
 				case 'gf':
-					if (animation.curAnim == null || !animation.curAnim.name.startsWith('hair'))
+					if (currentAnim == null || !currentAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
 
@@ -683,7 +683,7 @@ case 'gf':
 					}
 
 				case 'gf-christmas':
-					if (animation.curAnim == null || !animation.curAnim.name.startsWith('hair'))
+					if (currentAnim == null || !currentAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
 
@@ -694,7 +694,7 @@ case 'gf':
 					}
 
 				case 'gf-car':
-					if (animation.curAnim == null || !animation.curAnim.name.startsWith('hair'))
+					if (currentAnim == null || !currentAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
 
@@ -704,7 +704,7 @@ case 'gf':
 							playAnim('danceLeft');
 					}
 				case 'gf-pixel':
-					if (animation.curAnim == null || !animation.curAnim.name.startsWith('hair'))
+					if (currentAnim == null || !currentAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
 
@@ -714,7 +714,7 @@ case 'gf':
 							playAnim('danceLeft');
 					}
 				case 'gf-pixel-glitch':
-					if (animation.curAnim == null || !animation.curAnim.name.startsWith('hair'))
+					if (currentAnim == null || !currentAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
 
@@ -724,7 +724,7 @@ case 'gf':
 							playAnim('danceLeft');
 					}
 				case 'pico-gf':
-					if (animation.curAnim == null || !animation.curAnim.name.startsWith('hair'))
+					if (currentAnim == null || !currentAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
 
