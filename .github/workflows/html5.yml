@@ -9,14 +9,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout source
+        uses: actions/checkout@v4
 
-      - name: Setup Haxe
+      - name: Set up Haxe
         uses: krdlab/setup-haxe@v2
         with:
           haxe-version: 4.2.5
 
-      - name: Install libraries
+      - name: Prepare song chart assets
+        run: |
+          chmod +x ./prepare-html5-assets.sh
+          ./prepare-html5-assets.sh
+
+      - name: Install Haxe libraries
         run: |
           haxelib setup ~/haxelib
           haxelib install lime 7.9.0 --quiet
@@ -32,7 +38,15 @@ jobs:
       - name: Build HTML5
         run: haxelib run lime build html5 -release
 
-      - name: Upload build
+      - name: Verify HTML5 build output
+        run: |
+          test -d export/release/html5/bin
+          if ! grep -R -q 'doobop-hard.json' export/release/html5/bin; then
+            echo "doobop-hard.json was not found in the generated HTML5 output."
+            exit 1
+          fi
+
+      - name: Upload HTML5 build
         uses: actions/upload-artifact@v4
         with:
           name: html5-build
