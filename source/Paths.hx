@@ -7,7 +7,8 @@ import openfl.utils.Assets as OpenFlAssets;
 
 class Paths
 {
-	inline public static var SOUND_EXT = "ogg";
+	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
+	inline public static var SONG_SOUND_EXT = "ogg";
 
 	static var currentLevel:String;
 
@@ -98,13 +99,13 @@ class Paths
 	inline static public function voices(song:String)
 	{
 		song = StringTools.replace(song," ", "-");
-		return 'songs:assets/songs/${song.toLowerCase()}/Voices.$SOUND_EXT';
+		return 'songs:assets/songs/${song.toLowerCase()}/Voices.$SONG_SOUND_EXT';
 	}
 
 	inline static public function inst(song:String)
 	{
 		song = StringTools.replace(song," ", "-");
-		return 'songs:assets/songs/${song.toLowerCase()}/Inst.$SOUND_EXT';
+		return 'songs:assets/songs/${song.toLowerCase()}/Inst.$SONG_SOUND_EXT';
 	}
 
 	inline static public function image(key:String, ?library:String)
