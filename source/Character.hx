@@ -107,7 +107,7 @@ case 'gf':
 				playAnim('danceRight');
 
 			case 'pico-gf':
-				tex = Paths.getSparrowAtlas('characters/picoGf');
+				tex = Paths.getSparrowAtlas('characters/gfChristmas');
 				frames = tex;
 				animation.addByIndices('singUP', 'GF Dancing Beat', [0], "", 24, false);
 				animation.addByIndices('danceLeft', 'GF Dancing Beat', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -135,7 +135,7 @@ case 'gf':
 				updateHitbox();
 				antialiasing = false;
 			case 'gf-pixel-glitch':
-				tex = Paths.getSparrowAtlas('characters/gfPixelGlitch');
+				tex = Paths.getSparrowAtlas('characters/gfPixel');
 				frames = tex;
 				animation.addByIndices('singUP', 'GF IDLE', [2], "", 24, false);
 				animation.addByIndices('danceLeft', 'GF IDLE', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -363,7 +363,7 @@ case 'gf':
 				flipX = true;
 
 			case 'bf-duet':
-				var tex = Paths.getSparrowAtlas('characters/bfDuet');
+				var tex = Paths.getSparrowAtlas('characters/bfChristmas');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -456,7 +456,7 @@ case 'gf':
 
 				flipX = true;
 			case 'bf-pixel-glitch':
-				frames = Paths.getSparrowAtlas('characters/bfPixelGlitch');
+				frames = Paths.getSparrowAtlas('characters/bfPixel');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
 				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
 				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
