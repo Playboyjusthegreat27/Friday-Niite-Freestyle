@@ -1879,7 +1879,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.NINE)
 		{
-			if (iconP1.animation.curAnim.name == 'bf-old')
+			if (iconP1.animation.curAnim != null && iconP1.animation.curAnim.name == 'bf-old')
 				iconP1.animation.play(SONG.player1);
 			else
 				iconP1.animation.play('bf-old');
@@ -2037,7 +2037,7 @@ class PlayState extends MusicBeatState
 			if(allowedToHeadbang)
 			{
 				// Don't animate GF if something else is already animating her (eg. train passing)
-				if(gf.animation.curAnim.name == 'danceLeft' || gf.animation.curAnim.name == 'danceRight' || gf.animation.curAnim.name == 'idle')
+				if(gf.animation.curAnim != null && (gf.animation.curAnim.name == 'danceLeft' || gf.animation.curAnim.name == 'danceRight' || gf.animation.curAnim.name == 'idle'))
 				{
 					// Per song treatment since some songs will only have the 'Hey' at certain times
 					switch(curSong)
@@ -2428,7 +2428,7 @@ class PlayState extends MusicBeatState
 								{
 									spr.animation.play('confirm', true);
 								}
-								if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+								if (spr.animation.curAnim != null && spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
 								{
 									spr.centerOffsets();
 									spr.offset.x -= 13;
@@ -2527,7 +2527,7 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.ONE)
 			endSong();
 		#end
-		if (glitching == false && curStage == 'schoolEvil' && dad.animation.curAnim.name == 'idle' && !StringTools.contains(boyfriend.animation.curAnim.name, 'miss') && !glitchOveride)
+		if (glitching == false && curStage == 'schoolEvil' && dad.animation.curAnim != null && dad.animation.curAnim.name == 'idle' && boyfriend.animation.curAnim != null && !StringTools.contains(boyfriend.animation.curAnim.name, 'miss') && !glitchOveride)
 			glitch(false);
 	}
 
@@ -3138,13 +3138,13 @@ class PlayState extends MusicBeatState
 				
 				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || FlxG.save.data.botplay))
 				{
-					if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+					if (boyfriend.animation.curAnim != null && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 						boyfriend.playAnim('idle');
 				}
 		 
 				playerStrums.forEach(function(spr:FlxSprite)
 				{
-					if (pressArray[spr.ID] && spr.animation.curAnim.name != 'confirm')
+					if (pressArray[spr.ID] && spr.animation.curAnim != null && spr.animation.curAnim.name != 'confirm')
 						spr.animation.play('pressed');
 					if (!holdArray[spr.ID])
 						spr.animation.play('static');
